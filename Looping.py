@@ -37,3 +37,17 @@ i =3
 while i > 0:
     print(i)
     i -= 1  
+
+k = int(input("Enter a number: "))
+while k > 0:
+    print(k)
+    k -= 5
+    if k == 5:
+        print("Found 5, breaking the loop")
+        break
+    elif k < 5:
+        print("k values becomes less than 5, breaking the loop")
+        break
+    else:
+        print("k is not 5, continuing the loop")
+print("Loop ended")
