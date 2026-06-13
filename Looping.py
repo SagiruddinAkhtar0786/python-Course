@@ -51,3 +51,12 @@ while k > 0:
     else:
         print("k is not 5, continuing the loop")
 print("Loop ended")
+
+for i in range(12):
+    if i ==6:
+        print("Skipping 6, continuing the loop")
+        continue    
+    print("5 X", i, "=", 5*i)
+
+    if i % 2 == 0:
+        print(i, "is even")
