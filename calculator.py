@@ -41,3 +41,9 @@ print("type of a: ", type(a))
 b = input("Enter another number: ")
 print("type of b: ", type(b))
 print("sum of a and b is: ", int(a) + int(b))
+
+
+if(int(a) > int(b)):
+    print("a is greater than b")
+else:
+    print("b is greater than a")
