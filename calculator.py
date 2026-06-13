@@ -34,4 +34,5 @@ for i in range(0, len(name)):
     print(name[i])
 #print index of each character in the string
 for i in range(0, len(name)):
-    print("index: ", i, "character: ", name[i])
+    print("index: ", i, "character: ", name[i]);
+
