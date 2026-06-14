@@ -17,3 +17,4 @@ for key in dic.keys():
 for value in dic.values():
     print(value)
 
+print(type(dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])))
