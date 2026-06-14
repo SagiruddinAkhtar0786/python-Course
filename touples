@@ -1,0 +1,55 @@
+tup = (1,3,2,4,"sagir","rahuk",76, True, 3.14)
+
+print(tup,end=" ")
+print(tup[0])   
+print(tup[3])
+print(tup[-1])
+print(tup[2:5])
+print(tup + (5,6,7))
+print(tup * 2)  
+print(len(tup))
+print(type(tup),tup)
+
+
+if(234 in tup):
+    print("234 is present in the tuple")
+else:
+    print("234 is not present in the tuple")
+
+
+#touple is immutable, we cannot change its elements after creation
+#tup[0] = 10  # This will raise a TypeError
+
+countries = ("India", "USA", "UK", "Australia")
+print(countries)
+print("Number of countries:", len(countries))
+
+
+ListConvert = list(countries)
+print(ListConvert)
+
+ListConvert.append("Canada")
+print(ListConvert)
+
+ListConvert[1] = "Germany"
+print(ListConvert)
+
+#concatenate two touple
+
+tup1 = (1, 2, 3,3,1,4,2,5,6,7,3,8,9,10)
+tup2 = (4, 5, 6)        
+
+tup3 = tup1 + tup2
+print(tup3)
+
+counttup1 = tup1.count(2)
+print("Count of 2 in tup1:", counttup1)
+
+result = tup1.index(3)
+print("Index of first occurrence of 3 in tup1:", result)
+
+findindex = tup1.index(3, 2)  # Start searching from index 2
+print("Index of 3 in tup1 starting from index 2:", findindex)
+
+findindex1 = tup1.index(3, 4,11)  # Start searching from index 4 and end at index 11
+print("Index of 3 in tup1 starting from index 4:", findindex1)
