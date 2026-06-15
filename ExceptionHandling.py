@@ -1,4 +1,4 @@
-num = int(input("Enter a number: "))
+#num = int(input("Enter a number: "))
 
 
 """ try:
@@ -28,12 +28,15 @@ finally :
     print("i will be printed always")
  """
 
-try :
+""" try :
     for i in range(7):
         print(l[i+1])
 except Exception as e:
         print("error : ",e)
 finally:
-    print("always executable")
+    print("always executable") """
 
 
+a = int(input("enter any value between 5 an d 9"))
+if(a < 7 or a > 9):
+    raise ValueError("there is error with invalid number")
