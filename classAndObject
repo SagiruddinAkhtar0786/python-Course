@@ -1,0 +1,365 @@
+# Understanding Classes and Objects
+
+# ===== CONFIRMING YOUR UNDERSTANDING =====
+print("=== YES! YOU'RE CORRECT! ===\n")
+
+print("""
+When we write:  self.name = name
+
+YES! 'self.name' creates a NEW VARIABLE in the object
+YES! It stores the VALUE from the 'name' parameter into it
+
+Think of it like:
+    
+    name = "Sagiruddin"  <- Parameter (temporary)
+         |
+    self.name = name  <- Creates new permanent variable and copies value
+         |
+    self.name = "Sagiruddin"  <- Now stored in the object forever!
+""")
+
+
+# ===== VISUAL DEMONSTRATION =====
+print("=" * 60)
+print("VISUAL DEMONSTRATION")
+print("=" * 60 + "\n")
+
+class Person:
+    def __init__(self, name, age):
+        print(f"1. PARAMETER 'name' receives: '{name}'")
+        print(f"   Parameter 'age' receives: {age}\n")
+        
+        print(f"2. Creating NEW instance variables using 'self':")
+        self.name = name
+        print(f"   CREATED 'self.name' and stored: '{self.name}'")
+        
+        self.age = age
+        print(f"   CREATED 'self.age' and stored: {self.age}\n")
+
+
+# Create an object
+print("Creating person1 = Person('Ali', 25):\n")
+person1 = Person("Ali", 25)
+
+print("\n3. After __init__ ends:")
+print(f"   self.name still exists: {person1.name}")
+print(f"   self.age still exists: {person1.age}")
+
+
+# ===== MEMORY VISUALIZATION =====
+print("\n" + "=" * 60)
+print("MEMORY VISUALIZATION")
+print("=" * 60 + "\n")
+
+print("""
+During __init__:
++---------------------------------------------+
+| Stack Memory (Function Parameters)          |
++---------------------------------------------+
+| name = "Sagiruddin"                        |
+| age = 25                                   |
+|                                             |
+| These are TEMPORARY!                       |
++---------------------------------------------+
+        | (using self.name = name)
++---------------------------------------------+
+| Object Memory (Instance Variables)          |
++---------------------------------------------+
+| person1.name = "Sagiruddin"  <- NEW VAR    |
+| person1.age = 25             <- NEW VAR    |
+|                                             |
+| These are PERMANENT!                       |
++---------------------------------------------+
+
+After __init__ ends:
+- Parameters 'name', 'age' are DELETED from Stack
+- Instance variables 'self.name', 'self.age' REMAIN in Object
+""")
+
+
+# ===== STEP-BY-STEP BREAKDOWN =====
+print("\n" + "=" * 60)
+print("STEP-BY-STEP: self.name = name")
+print("=" * 60 + "\n")
+
+print("""
+Step 1: Function receives parameter
+        Person("Sagiruddin", 25)
+        |
+        def __init__(self, name, age):
+                           ^ name = "Sagiruddin"
+
+Step 2: Create new instance variable using 'self'
+        self.name = name
+        ^         ^
+        NEW VAR   VALUE FROM PARAMETER
+
+Step 3: Now the object HAS this variable forever
+        person1.name = "Sagiruddin"  [YES]
+        
+        Can access it anytime:
+        - person1.name  [YES] works
+        - print(self.name)  [YES] works from inside class
+        - person1.display()  [YES] works in other methods
+""")
+
+
+# ===== ANOTHER EXAMPLE =====
+print("\n" + "=" * 60)
+print("REAL-WORLD EXAMPLE")
+print("=" * 60 + "\n")
+
+class BankAccount:
+    def __init__(self, account, initial):
+        # Parameters (temporary)
+        print(f"Received parameters:")
+        print(f"  account_holder = '{account}'")
+        print(f"  initial_balance = {initial}\n")
+        
+        # Creating NEW variables using self
+        self.account_holder = account  # NEW variable!
+        self.balance = initial         # NEW variable!
+        
+        print(f"Created instance variables:")
+        print(f"  self.account_holder = '{self.account_holder}'")
+        print(f"  self.balance = {self.balance}\n")
+    
+    def show_info(self):
+        # Can access self variables forever
+        print(f"Account: {self.account_holder}, Balance: ${self.balance}")
+
+
+account = BankAccount("Sagiruddin", 5000)
+print("After __init__ ends, still can access:\n")
+account.show_info()
+print(f"  account.account_holder ***********= '{account.account_holder}'")
+print(f"  account.balance *************** = {account.balance}")
+print(f"\nDirect access:")
+print(f"  account.account_holder = '{account.account_holder}'")
+print(f"  account.balance = {account.balance}")
+
+
+# ===== BASIC CLASS DEFINITION =====
+
+"""
+When we write:  def __init__(self, name, occupation, networth):
+                    self.name = name
+                    self.occupation = occupation
+                    self.networth = networth
+
+'name' (parameter)      = Temporary local variable - only exists in __init__ function
+'self.name' (attribute) = Permanent instance variable - belongs to the object forever
+
+Example:
+    Person("Sagiruddin", "Developer", 10)
+    
+    'name' parameter = "Sagiruddin"  (just passing data to function)
+    'self.name' attribute = "Sagiruddin"  (storing data in the object)
+"""
+
+class Car:
+    def __init__(self, brand, color, price):
+        # Here, 'brand', 'color', 'price' are PARAMETERS (local variables)
+        # They only exist during __init__ execution
+        
+        print(f"Inside __init__:")
+        print(f"  Parameter 'brand' = {brand}")
+        print(f"  Parameter 'color' = {color}")
+        print(f"  Parameter 'price' = {price}\n")
+        
+        # We assign them to 'self' to make them INSTANCE VARIABLES
+        # Now they're stored in the object and last forever!
+        self.brand = brand
+        self.color = color
+        self.price = price
+        
+        print(f"After assignment to 'self':")
+        print(f"  self.brand = {self.brand}")
+        print(f"  self.color = {self.color}")
+        print(f"  self.price = {self.price}\n")
+
+
+# Create an object
+print("Creating car1:")
+car1 = Car("Toyota", "Red", 25000)
+
+# After __init__ ends, the parameters 'brand', 'color', 'price' are GONE
+# But self.brand, self.color, self.price STILL EXIST!
+print("After __init__ ends:")
+print(f"  car1.brand = {car1.brand}  (STILL EXISTS)")
+print(f"  car1.color = {car1.color}  (STILL EXISTS)")
+print(f"  car1.price = {car1.price}  (STILL EXISTS)\n")
+
+
+# ===== COMPARISON TABLE =====
+print("=" * 60)
+print("COMPARISON: 'name' vs 'self.name'")
+print("=" * 60)
+print("""
+┌─────────────────────────────────────────────────────────────┐
+│ 'name' (Parameter)          │ 'self.name' (Attribute)       │
+├─────────────────────────────┼───────────────────────────────┤
+│ Local variable              │ Instance variable (property)  │
+│ Only exists in __init__     │ Exists for the whole object   │
+│ Temporary (gets deleted)    │ Permanent (until object dies) │
+│ Used to pass data in        │ Used to store data long-term  │
+│ Just in the function scope  │ Accessible from outside       │
+│                             │                               │
+│ Example: name = "Ali"       │ Example: car1.brand = "Ali"  │
+│ (exists only during init)   │ (exists forever)             │
+└─────────────────────────────┴───────────────────────────────┘
+""")
+
+
+# ===== PRACTICAL EXAMPLE =====
+print("\n=== PRACTICAL EXAMPLE ===\n")
+
+class Student:
+    def __init__(self, roll_no, student_name, marks):
+        # Parameters (temporary)
+        print(f"Parameter 'student_name' = {student_name}")
+        
+        # Convert to instance variables (permanent)
+        self.roll_no = roll_no
+        self.name = student_name  # Notice: parameter is 'student_name', attribute is 'self.name'
+        self.marks = marks
+        
+        print(f"Instance variable 'self.name' = {self.name}\n")
+    
+    def display(self):
+        # Can access self.name even OUTSIDE __init__
+        print(f"Student: {self.name}, Roll: {self.roll_no}, Marks: {self.marks}")
+
+
+# Create students
+student1 = Student(101, "Sagiruddin", 95)
+student2 = Student(102, "Alice", 88)
+
+# Access instance variables from outside the class
+print("Accessing instance variables AFTER __init__:\n")
+student1.display()
+student2.display()
+
+print(f"\nstudent1.name = {student1.name}  ✓ Instance variable exists")
+print(f"student2.name = {student2.name}  ✓ Instance variable exists")
+
+
+# ===== BASIC CLASS DEFINITION =====
+class Person:
+    # Class variable (shared by all objects)
+    species = "Homo sapiens"
+    
+    # Constructor (__init__) - runs when an object is created
+    def __init__(self, name, occupation, networth):
+        # Instance variables (unique to each object)
+        self.name = name
+        self.occupation = occupation
+        self.networth = networth
+    
+    # Instance method
+    def display(self):
+        print(f"{self.name} is a {self.occupation}")
+    
+    # Another method
+    def get_info(self):
+        return f"Name: {self.name}, Job: {self.occupation}, Net Worth: ${self.networth}M"
+    
+    # Method that modifies instance variable
+    def give_raise(self, amount):
+        self.networth += amount
+        print(f"{self.name} now has a net worth of ${self.networth}M")
+
+
+# ===== CREATING OBJECTS (INSTANCES) =====
+print("--- Creating Objects ---")
+obj1 = Person("Sagiruddin", "Software Developer", 10)
+obj2 = Person("Alice", "Data Scientist", 15)
+obj3 = Person("Bob", "Product Manager", 12)
+
+# Each object has its own data
+print(f"\nObject 1: {obj1.name}")
+print(f"Object 2: {obj2.name}")
+print(f"Object 3: {obj3.name}")
+
+
+# ===== CALLING METHODS =====
+print("\n--- Calling Methods ---")
+obj1.display()
+obj2.display()
+
+print(f"\nFull info: {obj1.get_info()}")
+print(f"Full info: {obj2.get_info()}")
+
+
+# ===== CLASS VARIABLES =====
+print("\n--- Class Variables (Shared) ---")
+print(f"Species (from obj1): {obj1.species}")
+print(f"Species (from obj2): {obj2.species}")
+
+
+# ===== MODIFYING INSTANCE VARIABLES =====
+print("\n--- Modifying Instance Variables ---")
+obj1.give_raise(5)
+obj2.give_raise(3)
+
+print(f"Updated info for obj1: {obj1.get_info()}")
+print(f"Updated info for obj2: {obj2.get_info()}")
+
+
+# ===== INHERITANCE =====
+print("\n--- Inheritance (Child Class) ---")
+class Developer(Person):
+    def __init__(self, name, networth, programming_language):
+        super().__init__(name, "Developer", networth)
+        self.programming_language = programming_language
+    
+    def code(self):
+        print(f"{self.name} is coding in {self.programming_language}")
+
+
+dev = Developer("Charlie", 20, "Python")
+dev.display()  # Inherited method
+dev.code()     # New method
+
+
+# ===== UNDERSTANDING 'self' =====
+print("\n--- Understanding 'self' (like 'this' in Java) ---")
+
+class BankAccount:
+    def __init__(self, account_holder, balance):
+        self.account_holder = account_holder  # self = current object
+        self.balance = balance
+    
+    def deposit(self, amount):
+        # 'self' refers to the CURRENT object calling this method
+        self.balance += amount
+        print(f"{self.account_holder}'s balance is now: ${self.balance}")
+    
+    def show_balance(self):
+        # Without 'self', Python wouldn't know which object's data to use
+        print(f"{self.account_holder} has ${self.balance}")
+
+
+# Create multiple objects - each has its own 'self'
+account1 = BankAccount("Alice", 1000)
+account2 = BankAccount("Bob", 500)
+
+print("\nWhen account1.deposit() is called, 'self' = account1:")
+account1.deposit(200)  # Here, self = account1
+
+print("\nWhen account2.deposit() is called, 'self' = account2:")
+account2.deposit(300)  # Here, self = account2
+
+print("\nShowing each account's data (self knows which one):")
+account1.show_balance()  # self = account1
+account2.show_balance()  # self = account2
+
+print("\nWithout 'self', Python wouldn't know which object's data to access!")
+
+
+# ===== KEY CONCEPTS =====
+print("\n--- Key Concepts ---")
+print(f"Type of obj1: {type(obj1)}")
+print(f"Is obj1 an instance of Person? {isinstance(obj1, Person)}")
+print(f"Is dev an instance of Developer? {isinstance(dev, Developer)}")
+print(f"Is dev also an instance of Person? {isinstance(dev, Person)}")
