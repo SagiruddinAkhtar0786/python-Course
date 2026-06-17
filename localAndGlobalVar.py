@@ -1,33 +1,147 @@
-# =============================================
+# =============================================================================
 # LOCAL AND GLOBAL VARIABLES IN PYTHON
-# =============================================
+# =============================================================================
+# Global variables: Accessible from anywhere (outside any function)
+# Local variables: Accessible only within the function where they're defined
 
-# =============================================
-# 1. GLOBAL VARIABLES
-# =============================================
+print("=" * 60)
+print("LOCAL AND GLOBAL VARIABLES")
+print("=" * 60)
+
+# ===== 1. GLOBAL VARIABLES =====
+print("\n1. GLOBAL VARIABLES\n")
 
 # Variables defined outside functions are GLOBAL
 # They can be accessed from anywhere in the program
-
 name = "Alice"  # GLOBAL variable
 age = 25  # GLOBAL variable
 
+print(f"Global variables: name={name}, age={age}")
 
 def display_global():
     """Function that accesses global variables"""
-    print(f"Global name: {name}")
-    print(f"Global age: {age}")
+    print(f"  Inside function - Global name: {name}")
+    print(f"  Inside function - Global age: {age}")
 
-
+print("Calling display_global():")
 display_global()
 
 
-# =============================================
-# 2. LOCAL VARIABLES
-# =============================================
+# ===== 2. LOCAL VARIABLES =====
+print("\n" + "=" * 60)
+print("2. LOCAL VARIABLES")
+print("=" * 60 + "\n")
 
 # Variables defined inside functions are LOCAL
 # They only exist inside that function
+def local_example():
+    """Function with local variables"""
+    local_name = "Bob"  # LOCAL variable
+    local_age = 30  # LOCAL variable
+    
+    print(f"  Inside function - Local name: {local_name}")
+    print(f"  Inside function - Local age: {local_age}")
+
+print("Calling local_example():")
+local_example()
+
+# Try to access local variable outside function (will error)
+try:
+    print(f"Outside function - local_name: {local_name}")
+except NameError:
+    print("ERROR: local_name is not accessible outside the function")
+
+
+# ===== 3. GLOBAL vs LOCAL SCOPE =====
+print("\n" + "=" * 60)
+print("3. GLOBAL vs LOCAL SCOPE")
+print("=" * 60 + "\n")
+
+city = "New York"  # GLOBAL
+
+def city_function():
+    """Demonstrates scope"""
+    city = "London"  # LOCAL - shadows global variable
+    print(f"  Inside function: city = {city}")
+
+print(f"Before function call: city = {city}")
+city_function()
+print(f"After function call: city = {city}")
+
+
+# ===== 4. MODIFYING GLOBAL VARIABLES =====
+print("\n" + "=" * 60)
+print("4. MODIFYING GLOBAL VARIABLES USING 'global' KEYWORD")
+print("=" * 60 + "\n")
+
+counter = 0  # GLOBAL variable
+
+def increment_counter():
+    """Modify global variable using global keyword"""
+    global counter  # Tell Python to use the global counter
+    counter += 1
+    print(f"  Inside function: counter = {counter}")
+
+print(f"Initial counter: {counter}")
+print("Calling increment_counter():")
+increment_counter()
+print(f"After function call: counter = {counter}")
+increment_counter()
+print(f"After second call: counter = {counter}")
+
+
+# ===== 5. NONLOCAL VARIABLES (NESTED FUNCTIONS) =====
+print("\n" + "=" * 60)
+print("5. NONLOCAL VARIABLES (NESTED FUNCTIONS)")
+print("=" * 60 + "\n")
+
+def outer_function():
+    """Outer function"""
+    x = 10  # Variable in outer function scope
+    
+    def inner_function():
+        """Inner function that modifies outer function's variable"""
+        nonlocal x  # Access variable from enclosing function
+        x += 5
+        print(f"  Inside inner function: x = {x}")
+    
+    print(f"Before inner function: x = {x}")
+    inner_function()
+    print(f"After inner function: x = {x}")
+
+print("Calling outer_function():")
+outer_function()
+
+
+# ===== 6. SCOPE HIERARCHY =====
+print("\n" + "=" * 60)
+print("6. PYTHON SCOPE HIERARCHY (LEGB RULE)")
+print("=" * 60 + "\n")
+
+print("""
+LEGB Rule for variable lookup:
+1. L (Local) - Inside the current function
+2. E (Enclosing) - In outer function (for nested functions)
+3. G (Global) - At the top level of the script
+4. B (Built-in) - Python's built-in scope (e.g., len, print, etc.)
+
+When Python looks for a variable, it follows this order:
+Local -> Enclosing -> Global -> Built-in
+
+Example:
+    x = "global"  # Global scope
+    
+    def outer():
+        x = "enclosing"  # Enclosing scope
+        
+        def inner():
+            x = "local"  # Local scope
+            print(x)  # Will print "local"
+        
+        inner()
+    
+    outer()
+""")
 
 def greet():
     """Function with local variables"""

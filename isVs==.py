@@ -1,33 +1,120 @@
-# =====================================================
-# == vs is IN PYTHON
-# =====================================================
-
+# =============================================================================
+# DIFFERENCE BETWEEN == and is IN PYTHON
+# =============================================================================
 # == checks VALUE equality (does content match?)
-# is checks IDENTITY equality (are they the same object?)
+# is checks IDENTITY/OBJECT equality (are they the same object in memory?)
 
+print("=" * 60)
+print("== vs is IN PYTHON")
+print("=" * 60)
 
-# =====================================================
-# 1. BASIC DIFFERENCE
-# =====================================================
+# ===== 1. BASIC DIFFERENCE =====
+print("\n1. BASIC DIFFERENCE WITH NUMBERS\n")
 
-print("1. BASIC DIFFERENCE")
-print("-" * 50)
-
-# Example 1: Numbers
 a = 10
 b = 10
 
 print(f"a = {a}, b = {b}")
 print(f"a == b: {a == b}")  # True - values are the same
 print(f"a is b: {a is b}")   # True - small integers cached by Python
+print(f"id(a): {id(a)}, id(b): {id(b)}")  # Same ID
 
 
-# Example 2: Lists
+# ===== 2. DIFFERENCE WITH LISTS =====
+print("\n" + "=" * 60)
+print("2. DIFFERENCE WITH LISTS")
+print("=" * 60 + "\n")
+
 list1 = [1, 2, 3]
 list2 = [1, 2, 3]
+list3 = list1  # list3 points to same object
 
-print(f"\nlist1 = {list1}")
+print(f"list1 = {list1}")
 print(f"list2 = {list2}")
+print(f"list3 = {list3}")
+
+# == checks if contents are the same
+print(f"\nlist1 == list2: {list1 == list2}")  # True - same content
+print(f"list1 == list3: {list1 == list3}")  # True - same content
+
+# is checks if they're the same object
+print(f"\nlist1 is list2: {list1 is list2}")  # False - different objects
+print(f"list1 is list3: {list1 is list3}")  # True - same object
+
+# Check memory addresses
+print(f"\nMemory addresses:")
+print(f"  id(list1): {id(list1)}")
+print(f"  id(list2): {id(list2)}")
+print(f"  id(list3): {id(list3)}")
+
+
+# ===== 3. DIFFERENCE WITH STRINGS =====
+print("\n" + "=" * 60)
+print("3. DIFFERENCE WITH STRINGS")
+print("=" * 60 + "\n")
+
+str1 = "hello"
+str2 = "hello"
+str3 = str1
+
+print(f"str1 = '{str1}'")
+print(f"str2 = '{str2}'")
+print(f"str3 = '{str3}'")
+
+print(f"\nstr1 == str2: {str1 == str2}")  # True - same value
+print(f"str1 is str2: {str1 is str2}")   # True - interned by Python
+
+print(f"\nstr1 == str3: {str1 == str3}")  # True - same value
+print(f"str1 is str3: {str1 is str3}")   # True - same object
+
+
+# ===== 4. DIFFERENCE WITH None =====
+print("\n" + "=" * 60)
+print("4. CHECKING FOR None (ALWAYS use 'is')")
+print("=" * 60 + "\n")
+
+var1 = None
+var2 = None
+
+print(f"var1 = {var1}, var2 = {var2}")
+print(f"var1 == var2: {var1 == var2}")  # True
+print(f"var1 is var2: {var1 is var2}")  # True
+
+print("\nBest Practice:")
+print(f"  Correct: var1 is None")
+print(f"  Avoid: var1 == None")
+print(f"  Result: {var1 is None}")
+
+
+# ===== 5. WHEN TO USE WHICH =====
+print("\n" + "=" * 60)
+print("5. WHEN TO USE WHICH")
+print("=" * 60 + "\n")
+
+print("""
+USE == FOR:
+✓ Comparing VALUES
+✓ Checking if content is equal
+✓ Example: if x == 5:
+✓ Example: if list1 == list2:
+✓ Example: if name == "Ali":
+
+USE is FOR:
+✓ Comparing OBJECTS (identity)
+✓ Checking if same object in memory
+✓ Checking for None: if x is None:
+✓ Checking for True/False (sometimes)
+✓ Performance-critical code (is is faster)
+
+Example:
+    x = [1, 2, 3]
+    y = [1, 2, 3]
+    z = x
+    
+    x == y  # True (same content)
+    x is y  # False (different objects)
+    x is z  # True (same object)
+""")
 print(f"list1 == list2: {list1 == list2}")  # True - same content
 print(f"list1 is list2: {list1 is list2}")   # False - different objects
 

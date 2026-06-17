@@ -1,52 +1,174 @@
-tup = (1,3,2,4,"sagir","rahuk",76, True, 3.14)
+# =============================================================================
+# TUPLES IN PYTHON
+# =============================================================================
+# Tuples are immutable sequences - cannot be modified after creation
+# Written with parentheses: ()
 
-print(tup,end=" ")
-print(tup[0])   
-print(tup[3])
-print(tup[-1])
-print(tup[2:5])
-print(tup + (5,6,7))
-print(tup * 2)  
-print(len(tup))
-print(type(tup),tup)
+print("=" * 60)
+print("TUPLES IN PYTHON")
+print("=" * 60)
+
+# ===== 1. CREATE AND ACCESS TUPLES =====
+print("\n1. CREATE AND ACCESS TUPLES\n")
+
+tup = (1, 3, 2, 4, "sagir", "rahul", 76, True, 3.14)
+
+print(f"Tuple: {tup}")
+print(f"Length: {len(tup)}")
+print(f"Type: {type(tup)}")
+
+print(f"\nAccessing elements:")
+print(f"  tup[0] = {tup[0]} (first element)")
+print(f"  tup[3] = {tup[3]}")
+print(f"  tup[-1] = {tup[-1]} (last element)")
+print(f"  tup[-2] = {tup[-2]} (second to last)")
 
 
-if(234 in tup):
-    print("234 is present in the tuple")
+# ===== 2. SLICING TUPLES =====
+print("\n" + "=" * 60)
+print("2. SLICING TUPLES")
+print("=" * 60 + "\n")
+
+print(f"tup[2:5] = {tup[2:5]} (elements index 2,3,4)")
+print(f"tup[0:3] = {tup[0:3]} (first 3 elements)")
+print(f"tup[::2] = {tup[::2]} (every 2nd element)")
+print(f"tup[::-1] = {tup[::-1]} (reversed)")
+
+
+# ===== 3. TUPLE OPERATIONS =====
+print("\n" + "=" * 60)
+print("3. TUPLE OPERATIONS")
+print("=" * 60 + "\n")
+
+# Concatenation
+concat = tup + (5, 6, 7)
+print(f"tup + (5,6,7) = {concat}")
+
+# Repetition
+repeat = tup[:3] * 2
+print(f"tup[:3] * 2 = {repeat}")
+
+# Check membership
+if 234 in tup:
+    print("234 is in tuple")
 else:
-    print("234 is not present in the tuple")
+    print("234 is NOT in tuple")
+
+if 4 in tup:
+    print("4 is in tuple")
 
 
-#touple is immutable, we cannot change its elements after creation
-#tup[0] = 10  # This will raise a TypeError
+# ===== 4. TUPLE METHODS =====
+print("\n" + "=" * 60)
+print("4. TUPLE METHODS (.count() and .index())")
+print("=" * 60 + "\n")
+
+# Create tuples for examples
+tup1 = (1, 2, 3, 3, 1, 4, 2, 5, 6, 7, 3, 8, 9, 10)
+
+count = tup1.count(3)
+print(f"count(3) in tup1: {count} (3 appears {count} times)")
+
+index = tup1.index(3)
+print(f"index(3) in tup1: {index} (first 3 is at index {index})")
+
+count2 = tup1.count(2)
+print(f"count(2) in tup1: {count2} (2 appears {count2} times)")
+
+
+# ===== 5. IMMUTABILITY OF TUPLES =====
+print("\n" + "=" * 60)
+print("5. IMMUTABILITY - TUPLES CANNOT BE MODIFIED")
+print("=" * 60 + "\n")
+
+# Tuples are immutable - cannot change elements
+# tup[0] = 10  # This would raise: TypeError: 'tuple' object does not support item assignment
+
+print("Tuples are IMMUTABLE - cannot modify elements:")
+print("  tup[0] = 10  ❌ Would raise TypeError")
+print("\nIf you need to modify, convert to list:")
 
 countries = ("India", "USA", "UK", "Australia")
-print(countries)
-print("Number of countries:", len(countries))
+print(f"\nOriginal tuple: {countries}")
+
+# Convert tuple to list
+country_list = list(countries)
+print(f"Converted to list: {country_list}")
+
+# Modify the list
+country_list.append("Canada")
+print(f"After append('Canada'): {country_list}")
+
+country_list[1] = "Germany"
+print(f"After [1]='Germany': {country_list}")
+
+# Convert back to tuple
+new_tuple = tuple(country_list)
+print(f"Converted back to tuple: {new_tuple}")
 
 
-ListConvert = list(countries)
-print(ListConvert)
+# ===== 6. TUPLE CONCATENATION =====
+print("\n" + "=" * 60)
+print("6. TUPLE CONCATENATION")
+print("=" * 60 + "\n")
 
-ListConvert.append("Canada")
-print(ListConvert)
-
-ListConvert[1] = "Germany"
-print(ListConvert)
-
-#concatenate two touple
-
-tup1 = (1, 2, 3,3,1,4,2,5,6,7,3,8,9,10)
-tup2 = (4, 5, 6)        
-
+tup1 = (1, 2, 3)
+tup2 = (4, 5, 6)
 tup3 = tup1 + tup2
-print(tup3)
 
-counttup1 = tup1.count(2)
-print("Count of 2 in tup1:", counttup1)
+print(f"tup1 = {tup1}")
+print(f"tup2 = {tup2}")
+print(f"tup1 + tup2 = {tup3}")
 
-result = tup1.index(3)
-print("Index of first occurrence of 3 in tup1:", result)
+# Concatenate with more tuples
+tup4 = tup3 + (7, 8, 9)
+print(f"tup3 + (7,8,9) = {tup4}")
+
+
+# ===== 7. UNPACKING TUPLES =====
+print("\n" + "=" * 60)
+print("7. UNPACKING TUPLES")
+print("=" * 60 + "\n")
+
+coordinates = (10, 20, 30)
+x, y, z = coordinates
+print(f"coordinates = {coordinates}")
+print(f"Unpacked: x={x}, y={y}, z={z}")
+
+# Swap values
+a, b = (100, 200)
+print(f"\na={a}, b={b}")
+a, b = b, a  # Swap using tuple unpacking
+print(f"After swap: a={a}, b={b}")
+
+
+# ===== 8. TUPLE PROPERTIES SUMMARY =====
+print("\n" + "=" * 60)
+print("8. TUPLE PROPERTIES SUMMARY")
+print("=" * 60 + "\n")
+
+print("""
+TUPLES - Properties and Usage:
+
+✓ IMMUTABLE: Cannot modify after creation
+✓ ORDERED: Elements have a fixed order
+✓ INDEXED: Can access by index
+✓ SLICEABLE: Can use slice notation
+✓ MIXED TYPES: Can contain different data types
+✓ NESTABLE: Can contain other tuples
+
+Methods available:
+- .count(value)  : Count occurrences
+- .index(value)  : Find index of first occurrence
+
+Use tuples when you need:
+- Data that should not change
+- Use as dictionary keys (lists cannot be)
+- Return multiple values from functions
+- Slight memory efficiency vs lists
+""")
+
+print("\n✓ Tuples tutorial completed!")
 
 findindex = tup1.index(3, 2)  # Start searching from index 2
 print("Index of 3 in tup1 starting from index 2:", findindex)
