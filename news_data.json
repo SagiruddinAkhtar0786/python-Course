@@ -1,0 +1,24 @@
+{
+  "total_articles": 1,
+  "total_saved": 1,
+  "exported_at": "2026-06-24T12:10:27.405331",
+  "articles": [
+    {
+      "title": "Subscribe",
+      "source": "Hindustan Times",
+      "url": "#",
+      "published": "2026-06-24T12:10:26.389340",
+      "category": "Web Scrape"
+    }
+  ],
+  "saved_articles": [
+    {
+      "title": "Subscribe",
+      "source": "Hindustan Times",
+      "url": "#",
+      "published": "2026-06-24T12:10:26.389340",
+      "category": "Web Scrape",
+      "saved_date": "2026-06-24T12:10:27.403817"
+    }
+  ]
+}
